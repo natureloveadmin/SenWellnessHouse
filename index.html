@@ -1,1 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sen Wellness House — Preview</title>
+    <!-- Tailwind CSS (CDN / JIT) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>html { scroll-behavior: smooth; }</style>
+  </head>
+  <body class="bg-stone-50 text-stone-800">
+    <div id="root"></div>
 
+    <!-- React 18 (UMD) + ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel (to transpile inline JSX) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- App (text-only, no icons/images) -->
+    <script type="text/babel">
+      const Section = ({ id, title, subtitle, children }) => (
+        <section id={id} className="scroll-mt-24 py-16 md:py-24">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+            <div className="mb-10 md:mb-12">
+              {title && (
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-stone-800">{title}</h2>
+              )}
+              {subtitle && (
+                <p className="mt-2 text-stone-600 max-w-2xl">{subtitle}</p>
+              )}
+            </div>
+            {children}
+          </div>
+        </section>
+      );
+
+      const Card = ({ children }) => (
+        <div className="rounded-2xl bg-white shadow-sm ring-1 ring-stone-200/60 p-6 md:p-7">
+          {children}
+        </div>
+      );
+
+      const CTAButton = ({ children, href = "#contact" }) => (
+        <a
+          href={href}
+          className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm md:text-base font-medium bg-stone-900 text-stone-50 hover:bg-stone-800 transition"
+        >
+          {children}
+        </a>
+      );
+
+      const paths = [
+        { title: "Headspa", href: "#headspa", desc: "Hands-on rituals for scalp, neck, and the nervous system." },
+        { title: "Facials", href: "#facials", desc: "Natural, simple, effective care for glow and calm." },
+        { title: "Sound Healing", href: "#sound", desc: "Private sessions & group sound baths to rest in resonance." },
+        { title: "Yoga & Meditation", href: "#yoga", desc: "Gentle movement, breath, and stillness — all levels welcome." }
+      ];
+
+      const offers = [
+        { name: "Calm & Clarity", items: ["Headspa (60)", "Group Sound Bath"], note: "bundle savings" },
+        { name: "Grounded Glow", items: ["Facial (60)", "Meditation Class"], note: "bundle savings" },
+        { name: "Evening Unwind", items: ["Headspa (45)", "Tea Ritual", "Guided Breath"], note: "bundle savings" }
+      ];
+
+      const classesData = [
+        { time: "8:30 AM", name: "Gentle Flow", type: "Yoga", room: "Group Room" },
+        { time: "10:00 AM", name: "Meditation Basics", type: "Meditation", room: "Group Room" },
+        { time: "12:30 PM", name: "Group Sound Bath", type: "Sound", room: "Group Room" },
+        { time: "6:00 PM", name: "Evening Unwind", type: "Yoga", room: "Group Room" }
+      ];
+
+      function App() {
+        return (
+          <div className="min-h-screen bg-stone-50 text-stone-800 scroll-smooth">
+            {/* Header */}
+            <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/80 bg-white/70 border-b border-stone-200/60">
+              <div className="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+                <a href="#home" className="flex items-center gap-2 font-semibold tracking-tight">
+                  <span>Sen Wellness House</span>
+                </a>
+                <nav className="hidden md:flex items-center gap-6 text-sm">
+                  <a href="#experiences" className="hover:text-stone-900">Experiences</a>
+                  <a href="#headspa" className="hover:text-stone-900">Headspa</a>
+                  <a href="#facials" className="hover:text-stone-900">Facials</a>
+                  <a href="#sound" className="hover:text-stone-900">Sound</a>
+                  <a href="#yoga" className="hover:text-stone-900">Yoga</a>
+                  <a href="#spaces" className="hover:text-stone-900">Rooms</a>
+                  <a href="#offers" className="hover:text-stone-900">Offers</a>
+                  <a href="#classes" className="hover:text-stone-900">Classes</a>
+                  <a href="#contact" className="hover:text-stone-900">Contact</a>
+                </nav>
+                <div className="hidden md:block">
+                  <CTAButton href="#contact">Book Now</CTAButton>
+                </div>
+              </div>
+            </header>
+
+            {/* Hero */}
+            <section id="home" className="relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-stone-100 to-stone-50"></div>
+              <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-20 md:py-28">
+                <div className="max-w-3xl">
+                  <p className="text-stone-600 text-sm mb-4">
+                    To care for your body is to care for life itself.
+                  </p>
+                  <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight">
+                    Come Home to Your Vital Life
+                  </h1>
+                  <p className="mt-5 text-stone-600 md:text-lg max-w-2xl">
+                    Simple, holistic care for body, mind, and spirit — headspa & facials crafted from nature; sound healing and yoga to soften the heart.
+                  </p>
+                  <div className="mt-8 flex flex-wrap items-center gap-3">
+                    <CTAButton href="#contact">Book Now</CTAButton>
+                    <a href="#experiences" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl ring-1 ring-stone-300 text-stone-800 bg-white hover:bg-stone-100 transition">Explore Experiences</a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Four Paths */}
+            <Section id="experiences" title="Four Soulful Paths" subtitle="Choose the journey you need today — or let us guide you.">
+              <div className="grid md:grid-cols-4 gap-4 md:gap-6">
+                {paths.map((p) => (
+                  <a key={p.title} href={p.href} className="group">
+                    <Card>
+                      <div className="flex items-start gap-3">
+                        <div>
+                          <h3 className="font-semibold text-lg">{p.title}</h3>
+                          <p className="mt-1 text-sm text-stone-600">{p.desc}</p>
+                          <span className="mt-3 inline-flex text-sm text-stone-700 group-hover:underline">Explore →</span>
+                        </div>
+                      </div>
+                    </Card>
+                  </a>
+                ))}
+              </div>
+            </Section>
+
+            {/* Headspa */}
+            <Section id="headspa" title="Headspa" subtitle="Hands meet water, herbs meet breath. Soften the neck and shoulders, nourish the scalp, and calm the nervous system.">
+              <div className="grid md:grid-cols-3 gap-6">
+                <Card>
+                  <h4 className="font-semibold">Quiet Headspa (45 min)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Foundational cleanse, scalp massage, warm rinse.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Restorative Headspa (60 min)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Tailored mask + extended neck/shoulder care.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Deep Calm Headspa (75 min)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Warm herbal compress + slow rhythmic massage.</p>
+                </Card>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-stone-100 text-stone-700 text-sm">Enhancements: salt‑room breath</span>
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-stone-100 text-stone-700 text-sm">sound chime close</span>
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-stone-100 text-stone-700 text-sm">botanical hair mist</span>
+              </div>
+            </Section>
+
+            {/* Facials */}
+            <Section id="facials" title="Facials" subtitle="Natural, simple, effective. Thoughtful formulas meet gentle technique for a grounded glow.">
+              <div className="grid md:grid-cols-3 gap-6">
+                <Card>
+                  <h4 className="font-semibold">Everyday Glow (45 min)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Hydrosol cleanse, mask, facial massage.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Calm Complexion (60 min)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Targeted soothing for sensitive skin.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Earth & Radiance (75 min)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Layered care + extended neck & shoulder massage.</p>
+                </Card>
+              </div>
+            </Section>
+
+            {/* Sound Healing */}
+            <Section id="sound" title="Sound Healing" subtitle="Two private rooms for 1:1 or duo; a group room for up to 8 guests.">
+              <div className="grid md:grid-cols-3 gap-6">
+                <Card>
+                  <h4 className="font-semibold">1:1 Sound Session (30/45/60)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Gentle instruments, grounding breath, deep rest.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Duo Session (45/60)</h4>
+                  <p className="mt-2 text-sm text-stone-600">A shared resonance for two; softening together.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Group Sound Bath (45–60)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Up to 8 guests; a field of calm and clarity.</p>
+                </Card>
+              </div>
+            </Section>
+
+            {/* Yoga & Meditation */}
+            <Section id="yoga" title="Yoga & Meditation" subtitle="Gentle movement, breath, and friendly stillness. All levels welcome.">
+              <div className="grid md:grid-cols-4 gap-6">
+                <Card>
+                  <h4 className="font-semibold">Gentle Flow</h4>
+                  <p className="mt-2 text-sm text-stone-600">Slow, spacious movement to unwind.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Restorative & Breath</h4>
+                  <p className="mt-2 text-sm text-stone-600">Long holds, props, and guided breathing.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Meditation Basics</h4>
+                  <p className="mt-2 text-sm text-stone-600">Posture, breath, and compassion practice.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Evening Unwind</h4>
+                  <p className="mt-2 text-sm text-stone-600">Mellow stretch + guided rest to close the day.</p>
+                </Card>
+              </div>
+            </Section>
+
+            {/* Rooms & Spaces */}
+            <Section id="spaces" title="Rooms & Spaces" subtitle="Each category has its own room, tuned for calm and clarity.">
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card>
+                  <h4 className="font-semibold">Headspa & Facial Rooms</h4>
+                  <p className="mt-2 text-sm text-stone-600">Serene spa rooms for 1–2 guests; warm water, soft light, quiet acoustics.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Sound Rooms A & B</h4>
+                  <p className="mt-2 text-sm text-stone-600">Private 1:1 spaces tuned for resonance; cocoon‑like minimalism.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Group Room (up to 8)</h4>
+                  <p className="mt-2 text-sm text-stone-600">Yoga, meditation, and sound baths for intimate gatherings.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Salt Sanctuary</h4>
+                  <p className="mt-2 text-sm text-stone-600">Gentle glow for breath & rest; an optional setting for select enhancements.</p>
+                </Card>
+              </div>
+            </Section>
+
+            {/* Offers & Packages */}
+            <Section id="offers" title="Offers & Packages" subtitle="Thoughtful pairings to support what you need now.">
+              <div className="grid md:grid-cols-3 gap-6">
+                {offers.map((o) => (
+                  <Card key={o.name}>
+                    <h4 className="font-semibold">{o.name}</h4>
+                    <ul className="mt-3 space-y-1 text-sm text-stone-700 list-disc list-inside">
+                      {o.items.map((i) => (
+                        <li key={i}>{i}</li>
+                      ))}
+                    </ul>
+                    <p className="mt-3 text-xs uppercase tracking-wide text-stone-500">{o.note}</p>
+                  </Card>
+                ))}
+              </div>
+            </Section>
+
+            {/* Classes & Schedule */}
+            <Section id="classes" title="Classes & Schedule" subtitle="Weekly classes for yoga, meditation, and group sound.">
+              <div className="overflow-hidden rounded-2xl ring-1 ring-stone-200/60 bg-white">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-stone-50">
+                    <tr>
+                      <th className="px-4 py-3 font-medium text-stone-700">Time</th>
+                      <th className="px-4 py-3 font-medium text-stone-700">Class</th>
+                      <th className="px-4 py-3 font-medium text-stone-700">Type</th>
+                      <th className="px-4 py-3 font-medium text-stone-700">Room</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {classesData.map((c, idx) => (
+                      <tr key={idx} className="border-t border-stone-100">
+                        <td className="px-4 py-3 whitespace-nowrap text-stone-700">{c.time}</td>
+                        <td className="px-4 py-3 text-stone-800">{c.name}</td>
+                        <td className="px-4 py-3 text-stone-600">{c.type}</td>
+                        <td className="px-4 py-3 text-stone-600">{c.room}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-6">
+                <CTAButton href="#contact">Reserve a Spot</CTAButton>
+              </div>
+            </Section>
+
+            {/* Contact */}
+            <Section id="contact" title="Contact & Booking" subtitle="We’re here to help you choose the right path.">
+              <div className="grid md:grid-cols-3 gap-6">
+                <Card>
+                  <h4 className="font-semibold">Concierge</h4>
+                  <p className="mt-2 text-sm text-stone-600">Unsure where to begin? Our care guides can help you match services and classes to your energy, schedule, and season of life.</p>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Reach Us</h4>
+                  <div className="mt-3 space-y-2 text-sm text-stone-700">
+                    <p>Phone: (XXX) XXX‑XXXX</p>
+                    <p>Email: hello@senwellness.example</p>
+                    <p>Location: Sacramento, California</p>
+                  </div>
+                </Card>
+                <Card>
+                  <h4 className="font-semibold">Notes</h4>
+                  <ul className="mt-3 space-y-1 text-sm text-stone-700 list-disc list-inside">
+                    <li>Please arrive 10 minutes early.</li>
+                    <li>Kindly inform us of any sensitivities.</li>
+                    <li>Our formulas are natural, simple, and effective.</li>
+                  </ul>
+                </Card>
+              </div>
+              <div className="mt-6 flex items-center gap-3">
+                <CTAButton>Book Now</CTAButton>
+                <a href="#classes" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl ring-1 ring-stone-300 text-stone-800 bg-white hover:bg-stone-100 transition">See Classes</a>
+              </div>
+            </Section>
+
+            {/* Footer */}
+            <footer className="border-t border-stone-200/60 py-10">
+              <div className="max-w-6xl mx-auto px-4 md:px-6 text-sm text-stone-600">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                  <p>© {new Date().getFullYear()} Sen Wellness House. All rights reserved.</p>
+                  <div className="flex items-center gap-6">
+                    <a href="#" className="hover:text-stone-800">Policies</a>
+                    <a href="#" className="hover:text-stone-800">Careers</a>
+                    <a href="#contact" className="hover:text-stone-800">Contact</a>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
